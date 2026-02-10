@@ -41,6 +41,13 @@ def main():
         else: args.mode = "full"
         print("\n")
 
+    # BUG FIX: Sanitize Target Input
+    # Remove protocol (http/https) and trailing slashes if user included them
+    original_target = args.target
+    args.target = args.target.replace("https://", "").replace("http://", "").rstrip("/")
+    if original_target != args.target:
+        print(f"{Fore.YELLOW}[!] Sanitized target input: {original_target} -> {args.target}{Style.RESET_ALL}")
+
     results = {}
     
     if args.mode in ["recon", "full"]:
