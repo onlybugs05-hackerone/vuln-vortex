@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+dist/
+build/
+*.egg-info/
+.eggs/
+report.json
+report.html
+.DS_Store
+.vscode/
+.idea/
