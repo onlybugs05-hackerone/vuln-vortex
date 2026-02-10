@@ -1,0 +1,54 @@
+{
+    "recon": {
+        "target": "example.com",
+        "ip_addresses": [
+            "2606:4700:90d2:8c7c:33ca:420:ccc4:a209",
+            "104.18.27.120",
+            "104.18.26.120"
+        ],
+        "subdomains": [
+            "example.com",
+            "www.example.com",
+            "subjectname@example.com",
+            "m.testexample.com",
+            "m.example.com",
+            "dev.example.com",
+            "products.example.com",
+            "support.example.com",
+            "AS207960 Test Intermediate - example.com",
+            "user@example.com"
+        ],
+        "dns_records": {
+            "A": [
+                "104.18.26.120",
+                "104.18.27.120"
+            ],
+            "MX": [
+                "0 ."
+            ],
+            "TXT": [
+                "\"_k2n1y4vw3qtb4skdx9e7dxt97qrmmq9\"",
+                "\"v=spf1 -all\""
+            ]
+        }
+    },
+    "tech": {
+        "waf": "Cloudflare",
+        "server": "cloudflare",
+        "cms": null,
+        "frameworks": []
+    },
+    "scan": {
+        "headers": {},
+        "open_ports": [],
+        "missing_headers": [
+            "Content-Security-Policy",
+            "X-Frame-Options",
+            "X-XSS-Protection",
+            "Strict-Transport-Security",
+            "X-Content-Type-Options"
+        ]
+    },
+    "fuzz": [],
+    "vuln": []
+}

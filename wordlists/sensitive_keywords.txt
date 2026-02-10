@@ -1,0 +1,23 @@
+[
+    "aws-creds",
+    "backup",
+    "config",
+    "credentials",
+    "db_backup",
+    "debug",
+    "dump",
+    "env",
+    "git-credentials",
+    "id_rsa",
+    "passwd",
+    "password",
+    "private",
+    "secret",
+    "settings",
+    "shadow",
+    "sql",
+    "ssh",
+    "token",
+    "user",
+    "wallet"
+]
