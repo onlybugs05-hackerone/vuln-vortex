@@ -26,17 +26,33 @@ def run_recon(target):
     print(f"   [*] Querying crt.sh for subdomains...")
     try:
         url = f"https://crt.sh/?q=%.{target}&output=json"
+        # User-Agent is critical for CRT.sh
         headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
-        resp = requests.get(url, headers=headers, timeout=20)
+        resp = requests.get(url, headers=headers, timeout=25) # Increased timeout
+        
         if resp.status_code == 200:
-            data = resp.json()
-            for entry in data:
-                name_value = entry['name_value']
-                subdomains = name_value.split('\n')
-                for sub in subdomains:
-                    if sub not in recon_data["subdomains"] and '*' not in sub:
-                         recon_data["subdomains"].append(sub)
-            print(f"   [+] Found {len(recon_data['subdomains'])} unique subdomains from CRT.sh")
+            try:
+                data = resp.json()
+                # Use a set for faster deduping
+                found_domains = set()
+                
+                for entry in data:
+                    name_value = entry.get('name_value', '')
+                    subdomains = name_value.split('\n')
+                    for sub in subdomains:
+                        sub = sub.strip().lower()
+                        # Basic validation to ensure it looks like a domain ending in the target
+                        if sub and '*' not in sub and sub.endswith(target):
+                             found_domains.add(sub)
+                
+                recon_data["subdomains"] = list(found_domains)
+                print(f"   [+] Found {len(recon_data['subdomains'])} unique subdomains from CRT.sh")
+                
+            except ValueError:
+                 print("   [-] CRT.sh returned invalid JSON (likely rate limited).")
+        else:
+             print(f"   [-] CRT.sh failed with status code: {resp.status_code}")
+             
     except Exception as e:
         print(f"   [-] CRT.sh lookup failed: {e}")
 
