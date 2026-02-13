@@ -11,6 +11,8 @@ If you discover a security vulnerability within VULN-VORTEX itself (e.g., uninte
 1.  **GitHub Issues**: Open an issue labeled "Security".
 2.  **Email**: Contact OnlyBugs05 directly (if public).
 
+3.  **Private Report**: In GitHub In Security Submit A Report In Security Tab
+
 We appreciate your responsible disclosure and will address the issue promptly.
 
 ## Safe Usage Disclaimer
